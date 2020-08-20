@@ -4,6 +4,7 @@ export class Activity {
     public repo: Reporsitory;
     public actor: Actor;
     public created_at: Date;
+    public payload: any;
 }
 
 class Reporsitory {

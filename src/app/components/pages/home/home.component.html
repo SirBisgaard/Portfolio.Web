@@ -3,24 +3,16 @@
 <h2>GitHub Activity</h2>
 <ul class="list-group list-group-flush">
     <li class="list-group-item pr-0 pl-0" *ngFor="let activity of activities$ | async">
-        <div class="d-flex">
-            <div class="mr-3">
-                <img src="{{ activity.actor.avatar_url }}" alt="{{ activity.actor.login }}"
-                    class="img-thumbnail github-profile-img">
-            </div>
-            <div class="flex-grow-1">
-                <div class="d-flex w-100 justify-content-between">
-                    <div class="mb-1">
-                        <h5 class="d-inline mr-2">{{ activity.type }}</h5>
-                        <small>At {{ activity.repo.name}}</small>
-                    </div>
-                    <small>{{ getDaysAgo(activity.created_at) }} days ago.</small>
+            <div class="d-flex justify-content-between">
+                <div class="mb-1">
+                    <h5 class="d-inline mr-2 font-italic">{{ activity.type }}</h5>
+                    <small>At {{ activity.repo.name}}</small>
                 </div>
-                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius
-                    blandit.
-                </p>
-                <small>Donec id elit non mi porta.</small>
+                <small>{{ getDaysAgo(activity.created_at) }} days ago.</small>
             </div>
-        </div>
+            <div class="mb-4 mt-2 " [innerHtml]=getMessage(activity)></div>
+            <div class="border mb-1 p-3 w-100">
+                    <small><pre>{{ getDebug(activity) }}</pre></small>
+                </div>
     </li>
 </ul>
