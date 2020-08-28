@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GitHubService } from '../../../services/github-service';
+import { StarWarsQuoteService } from '../../../services/starwars-quote-service';
 import { Activity } from 'src/app/domain/activity';
 import { Observable } from 'rxjs';
+import { StarWarsQuote } from 'src/app/domain/starwars-quote';
 
 @Component({
   selector: 'home-page',
@@ -9,12 +11,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private gitHubService: GitHubService) { }
+  constructor(private gitHubService: GitHubService, private starWarsQuoteService: StarWarsQuoteService) { }
 
   activities$: Observable<Activity[]>;
+  quote: StarWarsQuote = new StarWarsQuote();
 
   ngOnInit(): void {
     this.activities$ = this.gitHubService.getLatestActivity();
+    this.starWarsQuoteService.getRandomQuote().subscribe(v => { this.quote = v; })
   }
 
   getMessage(activity: Activity) {

@@ -1,18 +1,48 @@
-<h1 class="display-1">Wellcome!</h1>
+<div class="d-none d-md-block">
+    <h1 class="display-1 text-center mb-0">Wellcome!</h1>
+    <p class="font-italic font-weight-bold text-center">Software Development • Photography • Car Culture • & More</p>
+</div>
 
-<h2>GitHub Activity</h2>
-<ul class="list-group list-group-flush">
-    <li class="list-group-item pr-0 pl-0" *ngFor="let activity of activities$ | async">
-            <div class="d-flex justify-content-between">
-                <div class="mb-1">
-                    <h5 class="d-inline mr-2 font-italic">{{ activity.type }}</h5>
-                    <small>At {{ activity.repo.name}}</small>
+<div class="d-md-flex mb-5 mt-5 justify-content-md-between">
+    <div class="mr-md-3 mb-3 justify-content-center d-flex ">
+        <img class="img-thumbnail img-fluid" style="max-width: 300px; max-height: 300px;"
+            src="https://avatars2.githubusercontent.com/u/18302592" alt="Profile picture of Martin" />
+    </div>
+    <div class="flex-grow-1">
+        <h2 class="mb-4">Hi, I am <b>Sir Bisgaard</b>. <br>
+            But you can call me <b>Martin</b>.</h2>
+
+        <p class="mb-0 text-muted">
+            In a galaxy far far away. A wise person once said:
+        </p>
+
+        <p class="mb-1 lead font-italic">
+            "{{ quote.starWarsQuote }}"
+        </p>
+        <small class="text-muted">- Provided by <a href="http://swquotes.digitaljedi.dk/" target="_blank">digitaljedi</a>.</small>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <h2>GitHub Activity</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item pr-0 pl-0" *ngFor="let activity of activities$ | async">
+                <div class="d-flex justify-content-between">
+                    <div class="mb-1">
+                        <h5 class="d-inline mr-2 font-italic">{{ activity.type }}</h5>
+                        <small>At {{ activity.repo.name}}</small>
+                    </div>
+                    <small>{{ getDaysAgo(activity.created_at) }} days ago.</small>
                 </div>
-                <small>{{ getDaysAgo(activity.created_at) }} days ago.</small>
-            </div>
-            <div class="mb-4 mt-2 " [innerHtml]=getMessage(activity)></div>
-            <div class="border mb-1 p-3 w-100">
-                    <small><pre>{{ getDebug(activity) }}</pre></small>
-                </div>
-    </li>
-</ul>
+                <div class="mb-4 mt-2 " [innerHtml]=getMessage(activity)></div>
+                <!-- <div class="border mb-1 p-3 w-100">
+                    <small>
+                        <pre>{{ getDebug(activity) }}</pre>
+                    </small>
+                </div> -->
+            </li>
+        </ul>
+    </div>
+</div>
