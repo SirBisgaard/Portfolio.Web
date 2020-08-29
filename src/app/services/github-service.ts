@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { Activity } from '../domain/activity';
@@ -17,13 +17,14 @@ export class GitHubService {
 
     public getLatestActivity(): Observable<Activity[]> {
         return this.http.get<Activity[]>(this.url)
-        .pipe(
-          catchError(this.handleError<Activity[]>('getLatestActivity', []))
-        );
+            .pipe(
+                map(x => x.slice(0, 10)),
+                catchError(this.handleError<Activity[]>('getLatestActivity', []))
+            );
     }
 
     private log(message: string) {
-        console.error(message); 
+        console.error(message);
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

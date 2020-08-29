@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { StarWarsQuote } from '../domain/starwars-quote';
@@ -11,7 +11,7 @@ import { StarWarsQuote } from '../domain/starwars-quote';
 })
 export class StarWarsQuoteService {
 
-    private url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote';
+    private url = 'https://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote';
 
     constructor(private http: HttpClient) { }
 
